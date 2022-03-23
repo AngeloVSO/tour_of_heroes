@@ -1,7 +1,7 @@
+import { GlobalContextService } from './../services/global-context.service';
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './hero.model';
 import { HeroService } from '../services/hero.service';
-import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -9,15 +9,15 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./heroes.component.css'],
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[] = [];
+  heroes: Hero[] = this.globalContextService.heroes;
 
   constructor(
     private heroService: HeroService,
-    private messageService: MessageService
+    private globalContextService: GlobalContextService
   ) {}
 
   ngOnInit(): void {
-    this.getHeroes();
+    // this.getHeroes();
   }
 
   getHeroes(): void {

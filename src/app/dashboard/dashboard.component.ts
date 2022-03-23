@@ -1,6 +1,7 @@
 import { Hero } from './../heroes/hero.model';
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../services/hero.service';
+import { GlobalContextService } from '../services/global-context.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +9,15 @@ import { HeroService } from '../services/hero.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+  heroes: Hero[] = this.globalContextService.heroes;
 
-  constructor(private heroService: HeroService) {}
+  constructor(
+    private heroService: HeroService,
+    private globalContextService: GlobalContextService
+  ) {}
 
   ngOnInit(): void {
-    this.getTopHeroes();
+    // this.getTopHeroes();
   }
 
   getTopHeroes(): void {
